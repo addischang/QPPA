@@ -16,5 +16,6 @@ function removal = quadrange( OptimalSpeed, PowerRequired )
 global BatNumber BatCapity
 
 hours = BatNumber * BatCapity / PowerRequired ;
-removal = ( 3600 * OptimalSpeed *  hours ) / ( 2 * 1000 );
-ranges = [ num2str( removal ) ' Meters ' ]
+range = ( 3600 * OptimalSpeed *  hours ) / ( 2 * 1000 );
+disp( [ 'Range is ' num2str( range ) ' Meters ' ] )
+removal = range;

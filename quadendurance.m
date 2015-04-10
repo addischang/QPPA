@@ -14,6 +14,6 @@ function removal = quadendurance( MinimunPower )
 %     Copyright 2015 by Avionics And Flight Simulation Laboratory
 
 global BatNumber BatCapity
-
-removal = BatNumber * BatCapity / MinimunPower;
-endurances = [ num2str( round( removal * 60 ) ) ' Mins' ]
+endu = BatNumber * BatCapity / MinimunPower;
+disp( [ 'Endurances is ' num2str( round( endu * 60 ) ) ' Mins' ] )
+removal = endu;

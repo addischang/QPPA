@@ -88,11 +88,11 @@ end
 % Plot the figure 
 figure( CounterFig );
 CounterFig = CounterFig +1;
-h = plot( GeoHeight, MAXRC );
+h = plot( MAXRC, GeoHeight );
 title( ' Maximun Climb Rate in Vertical Flight ' );
 set( h, 'linewidth', 1.9 );
 xlabel( ' Vertical Speed (m/s) ' );
-ylabel( ' Power Required (W) ' );
+ylabel( ' Altitude(h) ' );
 grid on;
 
 % Plot the figure 
@@ -109,10 +109,10 @@ xlabel( ' Vertical Speed (m/s) ' );
 ylabel( ' Power Required (W) ' );
 grid on;
 
-parameter = ...
-{[ 'Opt. R/C = ' num2str( round( OPTRC( CounterGeh, 1 ) ) ) ' m/s ' ];
- [ 'Min. P.R = ' num2str( round( PORRC( CounterGeh, 1 ) ) ) ' W   ' ];
- [ 'Max. R/C = ' num2str( round( MAXRC( CounterGeh, 1 ) ) ) ' m/s ' ]}
+
+disp( [ 'Opt. R/C = ' num2str( round( OPTRC( CounterGeh, 1 ) ) ) ' m/s ' ] )
+disp( [ 'Min. P.R = ' num2str( round( PORRC( CounterGeh, 1 ) ) ) ' W   ' ] )
+disp( [ 'Max. R/C = ' num2str( round( MAXRC( CounterGeh, 1 ) ) ) ' m/s ' ] )
 
 removal = 0;
 % 
