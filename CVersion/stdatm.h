@@ -1,1 +1,0 @@
-float stdatm( float Height );
