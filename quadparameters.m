@@ -11,11 +11,23 @@ function [ output_args ] = quadparameters( input_args )
 % COPYRIGHT
 %   2015 by Avionics And Flight Simulation Laboratory
 
+global GeoAlt AirRho AirTmp AirPre
 global Vc Vf
-global CutGeh CutFig SizGeh SizVc SizVf
-global AirRho AirTmp AirPre
+global CutGeh CutFig SizGeh SizVc SizVf LghGeh LghVc LghVf
 
 % VRRIABLES LIST
+%   ---- ATMOSPHERE ----
+%   AirDat
+%       The total data for air. 
+%   GeoAlt
+%       The geometry altitude
+%   AirRho
+%       The density for local air  
+%   AirTmp
+%       The temperature for local air
+%   AirPre
+%       The pressure for local air
+%
 %   ---- BASICS ----
 %   Vc
 %       The row data for vertical velocity.
@@ -33,49 +45,50 @@ global AirRho AirTmp AirPre
 %       The size for vertical velocity.
 %   SizVf
 %       The size for forward vertical.
+%   LghGeh 
+%       The length for geometry altitude.  
+%   LghVc 
+%       The length for vertical velocity.
+%   LghVf 
+%       The length for forward velocity.
 %
-%   ---- ATMOSPHERE ----
-%   AirDat
-%       The total data for air.
-    AirDat = quadstdatm( input_args );
-    
-%   AirRho
-%       The density for local air
-    AirRho = AirDat( :, 6 );
-    
-%   AirTmp
-%       The temperature for local air
-    AirTmp = AirDat( :, 3 );
-    
-%   AirPre
-%       The pressure for local air
-    AirPre = AirDat( :, 5 );
-
 %   ---- PROPULSION ----
 %   PowTot
+%       Total Power which motor can supply.
 %   BatNum
 %       Number of batter
-    BatNum = 2;
-    
 %   BatCap
 %       Number of batter
-    BatCap = 5.4;
-    
 %   PrpNum
-%       Number of propellers
-    PrpNum = 4;
-    
+%       Number of propellers    
 %   PrpRad
 %       Radious of propellers
-    PrpRad = 0.1543;
-
 %   MotNum
 %       Number of motors
-    MotNum = 4
 
 %   ---- SPECIFICTION ----
 
+AirDat = quadstdatm( input_args );
+GeoAlt = AirDat( :, 1 );
+AirTmp = AirDat( :, 3 );
+AirPre = AirDat( :, 5 );
+AirRho = AirDat( :, 6 );
+Vc = linspace( 0, 15, 30 );
+Vf = linspace( 0, 25, 50 );
+CutGeh = 1; 
+CutFig = 1; 
+SizGeh = size( GeoAlt );
+LghGeh = length( GeoAlt );
+LghVc = length( Vc );  
+LghVf = length( Vf );
 
+BatNum = 2;
+BatCap = 5.4;
+PrpNum = 4;
+PrpRad = 0.1543;
+MotNum = 4;
+
+output_args = 0;
 
 end
 

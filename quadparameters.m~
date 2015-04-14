@@ -36,36 +36,41 @@ global AirRho AirTmp AirPre
 %
 %   ---- ATMOSPHERE ----
 %   AirDat
-%       The total data for air.
-    AirDat = quadstdatm( input_args );
-    
+%       The total data for air.    
 %   AirRho
-%       The density for local air
-    AirRho = AirDat( :, 6 );
-    
+%       The density for local air  
 %   AirTmp
 %       The temperature for local air
-    AirTmp = AirDat( :, 3 );
-    
 %   AirPre
 %       The pressure for local air
-    AirPre = AirDat( :, 5 );
-
 %   ---- PROPULSION ----
 %   PowTot
 %   BatNum
 %       Number of batter
-    BatNum = 
+%   BatCap
+%       Number of batter
 %   PrpNum
 %       Number of propellers
+    
 %   PrpRad
 %       Radious of propellers
+
 %   MotNum
 %       Number of motors
-%
+
 %   ---- SPECIFICTION ----
 
-
+Vc = linspace( 0, 15, 30 )
+Vf = linspace( 0, 25, 50 );
+AirDat = quadstdatm( input_args );
+AirRho = AirDat( :, 6 );
+AirTmp = AirDat( :, 3 );
+AirPre = AirDat( :, 5 );
+BatNum = 2;
+BatCap = 5.4;
+PrpNum = 4;
+PrpRad = 0.1543;
+MotNum = 4;
 
 end
 
