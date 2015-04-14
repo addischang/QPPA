@@ -8,12 +8,16 @@ function [ output_args ] = quadparameters( input_args )
 %   Send bug reports or comments to <602430307@s02.tku.edu.tw>
 %   Check https://github.com/addischang1991/QPPA for the latest version
 %
+% DATE
+%   15-Apr-2015
+%
 % COPYRIGHT
 %   2015 by Avionics And Flight Simulation Laboratory
 
-global GeoAlt AirRho AirTmp AirPre
+global GeoAlt g AirRho AirTmp AirPre
 global Vc Vf
 global CutGeh CutFig SizGeh SizVc SizVf LghGeh LghVc LghVf
+global NumBat NumPrp NumMot BatCap PrpRad Mass Weight
 
 % VRRIABLES LIST
 %   ---- ATMOSPHERE ----
@@ -68,13 +72,15 @@ global CutGeh CutFig SizGeh SizVc SizVf LghGeh LghVc LghVf
 
 %   ---- SPECIFICTION ----
 
+
 AirDat = quadstdatm( input_args );
 GeoAlt = AirDat( :, 1 );
+g      = AirDat( :, 2 );
 AirTmp = AirDat( :, 3 );
 AirPre = AirDat( :, 5 );
 AirRho = AirDat( :, 6 );
-Vc = linspace( 0, 15, 30 );
-Vf = linspace( 0, 25, 50 );
+Vc = linspace( 0, 20, 20 );
+Vf = linspace( 0, 20, 20 );
 CutGeh = 1; 
 CutFig = 1; 
 SizGeh = size( GeoAlt );
@@ -82,11 +88,16 @@ LghGeh = length( GeoAlt );
 LghVc = length( Vc );  
 LghVf = length( Vf );
 
-BatNum = 2;
+NumBat = 2;
 BatCap = 5.4;
-PrpNum = 4;
+NumPrp = 4;
 PrpRad = 0.1543;
-MotNum = 4;
+NumMot = 4;
+MassMot = 0.18;
+MassBat = 0.45;
+MassFrm = 0.55;
+Mass = MassMot * NumMot + MassBat * NumBat + MassFrm;
+Weight = Mass .* g;
 
 output_args = 0;
 
