@@ -1,7 +1,7 @@
-function [ output_args ] = quadindvc( input_args )
-%QUADINDVH
-%   quadindvc( input_args ) is a function to figure out the induced
-%   velocity of vertical climb at different altitude.
+function [ output_args ] = quadpowerc( input_args )
+%QUADTHRUSTC
+%   quadpowerc( input_args ) is a function to figure out the power
+%   required in vertical climb
 %
 % AUTHOR
 %   CHANG, WEI-CHIEH
@@ -18,21 +18,28 @@ global GeoAlt g AirRho AirTmp AirPre
 global Vc Vf
 global CutGeh CutFig SizGeh SizVc SizVf LghGeh LghVc LghVf
 global NumBat NumPrp NumMot BatCap PrpRad Mass Weight
-global V1h V1c
+global V1h V1c TRC PRC
+
+ThrustRequired = TRC;
 
 for i = 1: 1: LghGeh
-    indv( i, : ) =  ( -0.5 .* Vc ) + sqrt( ( 0.5 .* Vc ).^2 + V1h( 1, 1 )^2 );
+    
+    % Declarte the 
+    Kappa( i, 1 ) =  AirRho( 1, 1 ) / ( AirRho( i, 1 ) * 0.9 * 0.8 ); 
+    PowerRequired( i, : ) = Kappa( i, 1 ) .* ThrustRequired( i, : ) .* ( Vc + V1c( i, : ) ); 
+    
+       
 end
 
-V1c = indv;
+PRC = PowerRequired;
 
 figure( CutFig )
 CutFig = CutFig + 1;
-h = plot( Vc, indv( CutGeh, : ) );
+h = plot( Vc, PowerRequired( CutGeh, : ) );
 set( h, 'linewidth', 1.9 );
 xlabel( ' Climb Velocity (m/s) ' );
-ylabel( ' Induced velocity (m/s) ' );
+ylabel( ' Power (W) ' );
 grid on;
 
-end
 
+end

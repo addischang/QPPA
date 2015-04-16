@@ -17,7 +17,7 @@ function [ output_args ] = quadparameters( input_args )
 global GeoAlt g AirRho AirTmp AirPre
 global Vc Vf
 global CutGeh CutFig SizGeh SizVc SizVf LghGeh LghVc LghVf
-global NumBat NumPrp NumMot BatCap PrpRad Mass Weight
+global PowTot NumBat NumPrp NumMot BatCap PrpRad Mass Weight
 
 % VRRIABLES LIST
 %   ---- ATMOSPHERE ----
@@ -88,6 +88,7 @@ LghGeh = length( GeoAlt );
 LghVc = length( Vc );  
 LghVf = length( Vf );
 
+PowTot = 180;
 NumBat = 2;
 BatCap = 5.4;
 NumPrp = 4;

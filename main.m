@@ -17,7 +17,12 @@ clf
 clc
 
 %
-quadparameters( 0: 1000: 3000 );
+quadparameters( 0: 1000: 2000 );
 quadindvh
 quadindvc
 quadthrustc
+quadpowerc
+quadmaxvc
+quadindvf
+quadpitchf
+quadthrustf
