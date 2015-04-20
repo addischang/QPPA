@@ -18,6 +18,7 @@ global GeoAlt g AirRho AirTmp AirPre
 global Vc Vf
 global CutGeh CutFig SizGeh SizVc SizVf LghGeh LghVc LghVf
 global PowTot NumBat NumPrp NumMot BatCap PrpRad Mass Weight
+global Sref1 CD1 Sref2 CD2 
 
 % VRRIABLES LIST
 %   ---- ATMOSPHERE ----
@@ -79,8 +80,8 @@ g      = AirDat( :, 2 );
 AirTmp = AirDat( :, 3 );
 AirPre = AirDat( :, 5 );
 AirRho = AirDat( :, 6 );
-Vc = linspace( 0, 20, 20 );
-Vf = linspace( 0, 20, 20 );
+Vc = linspace( 0, 05, 20 );
+Vf = linspace( 0.5, 35, 20 );
 CutGeh = 1; 
 CutFig = 1; 
 SizGeh = size( GeoAlt );
@@ -88,7 +89,7 @@ LghGeh = length( GeoAlt );
 LghVc = length( Vc );  
 LghVf = length( Vf );
 
-PowTot = 180;
+PowTot = 700;
 NumBat = 2;
 BatCap = 5.4;
 NumPrp = 4;
@@ -99,6 +100,10 @@ MassBat = 0.45;
 MassFrm = 0.55;
 Mass = MassMot * NumMot + MassBat * NumBat + MassFrm;
 Weight = Mass .* g;
+Sref1 = 0.69e-3;
+CD1 = 0.48;
+Sref2 = 0.74e-4;
+CD2 = 0.98;
 
 output_args = 0;
 

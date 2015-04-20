@@ -28,20 +28,20 @@ end
 
 V1f = indv;
 
-figure( CutFig )
-CutFig = CutFig + 1;
-h = plot( Vf, indv );
-set( h, 'linewidth', 1.9 );
-xlabel( ' Climb Velocity (m/s) ' );
-ylabel( ' Altitude (m) ' );
-grid on;
-
-figure( CutFig )
-CutFig = CutFig + 1;
-h = plot( Vf, delv );
-set( h, 'linewidth', 1.9 );
-xlabel( ' Climb Velocity (m/s) ' );
-ylabel( ' Altitude (m) ' );
-grid on;
+% figure( CutFig )
+% CutFig = CutFig + 1;
+% h = plot( Vf, indv );
+% set( h, 'linewidth', 1.9 );
+% xlabel( ' Climb Velocity (m/s) ' );
+% ylabel( ' Altitude (m) ' );
+% grid on;
+% 
+% figure( CutFig )
+% CutFig = CutFig + 1;
+% h = plot( Vf, delv );
+% set( h, 'linewidth', 1.9 );
+% xlabel( ' Climb Velocity (m/s) ' );
+% ylabel( ' Altitude (m) ' );
+% grid on;
 
 end

@@ -21,10 +21,10 @@ global V1h
 
 V1h = sqrt( Weight ./ ( 2 .* AirRho .* ( NumPrp * pi * PrpRad^2  ) ) );
 
-figure( CutFig )
-CutFig = CutFig + 1;
-plot( V1h, GeoAlt, '-^' );
-grid on
+% figure( CutFig )
+% CutFig = CutFig + 1;
+% plot( V1h, GeoAlt, '-^' );
+% grid on
 
 end
 

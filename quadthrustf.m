@@ -19,27 +19,32 @@ global Vc Vf
 global CutGeh CutFig SizGeh SizVc SizVf LghGeh LghVc LghVf
 global PowTot NumBat NumPrp NumMot BatCap PrpRad Mass Weight
 global V1h V1f PitchAngle PitchDrag
+global DragPa DragWa ThrustF
 
-Sref1 = 0.69e-3;
-CD1 = 0.48;
-Sref2 = 0.74e-4;
-CD2 = 0.98;
 
 for i = 1: 1: LghGeh
     
-    ThrustReqX( i, : ) = PitchDrag( i, : ) + ...
-        0.5 * AirRho( i, : ) .* Vf.^2 * Sref2 * CD2 .* PitchAngle( i, : );
-    ThrustReqY( i, : ) = Weight( i, 1 ) .* ones( size( Vf ) ) + ...
-        0.5 * AirRho( i, : ) .* Vf.^2 * Sref2 * CD2;
+    ThrustReqX( i, : ) = DragPa( i, : ) + DragWa( i, : ) .* PitchAngle( i, : );
+    ThrustReqY( i, : ) = Weight( i, 1 ) .* ones( size( Vf ) ) + DragWa( i, : );
     ThrustReqF( i, : ) = sqrt( ThrustReqX( i, : ).^2 + ThrustReqY( i, : ).^2 );
     
-    PPP( i, : ) =  ( AirRho( i, 1 ) / AirRho( 1, 1 )) .* ...
-        ThrustReqF( i, : ) .* ( V1f( i, : ) + Vf ) ./ 0.7;
 end
+
+PowTot * 0.7 / V1h( 1, 1)
+
+EQLD = ThrustReqF( CutGeh, : ) ./ (  DragWa( CutGeh, : ) +  DragPa( CutGeh, : ) );
 
 figure( CutFig )
 CutFig = CutFig + 1;
-h = plot( Vc, ThrustReqF );
+h = plot( Vf, ThrustReqF( CutGeh, : ), '-.k' );
+set( h, 'linewidth', 1.9 );
+xlabel( ' Forward Velocity (m/s) ' );
+ylabel( ' Thrust Required(N) ' );
+grid on;
+
+figure( CutFig )
+CutFig = CutFig + 1;
+h = plot( Vf, ThrustReqY( CutGeh, : ), '-.k' );
 set( h, 'linewidth', 1.9 );
 xlabel( ' Forward Velocity (m/s) ' );
 ylabel( ' Thrust (N) ' );
@@ -47,10 +52,22 @@ grid on;
 
 figure( CutFig )
 CutFig = CutFig + 1;
-h = plot( Vc, PPP );
+h = plot( Vf, ThrustReqX( CutGeh, : ), '-.m' );
 set( h, 'linewidth', 1.9 );
 xlabel( ' Forward Velocity (m/s) ' );
-ylabel( ' Power (P) ' );
+ylabel( ' Thrust (N) ' );
 grid on;
+
+figure( CutFig )
+CutFig = CutFig + 1;
+h = plot( Vf, EQLD, '-.g' );
+set( h, 'linewidth', 1.9 );
+xlabel( ' Forward Velocity (m/s) ' );
+ylabel( ' EQLD' );
+grid on;
+
+
+
+ThrustF = ThrustReqF;
 
 end

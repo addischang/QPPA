@@ -17,12 +17,15 @@ clf
 clc
 
 %
-quadparameters( 0: 1000: 2000 );
+quadparameters( linspace( 0, 6000, 3 ) );
 quadindvh
-quadindvc
-quadthrustc
-quadpowerc
-quadmaxvc
+% quadindvc
+% quadthrustc
+% quadpowerc
+% quadmaxvc
 quadindvf
 quadpitchf
+quaddragf
 quadthrustf
+quadpowerf
+quadld
